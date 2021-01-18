@@ -1,0 +1,26 @@
+---
+- name: play for file management
+  hosts: ec2
+  tasks:
+    - name: create some files
+      file:
+        path: "/home/ansibleuser/file3.txt"
+        state: touch
+      become: yes
+
+    # - name: '***'
+    #   copy:
+    #     content: "hello there"
+    #     dest: /home/ansibleuser/hello.txt
+    # - name: copy hellofile.txt
+    #   copy:
+    #     src: /home/ec2-user/testfile2.txt
+    #     dest: /home/ansibleuser
+    # - name: archiving files
+    #   archive:
+    #     path:
+    #       - /home/ec2-user/testfile2.txt
+    #       - /home/ec2-user/testfile.txt
+    #       - /home/ansibleuser/hello.txt
+    #     dest: $HOME/zipped.zip
+    #     format: zip

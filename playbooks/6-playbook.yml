@@ -1,0 +1,30 @@
+---
+- name: installing nginx
+  hosts:
+    - ec2-1
+  become: yes 
+  tasks:
+    - name: installing docker
+      package:
+          name: docker.io
+          state: present
+    - name: starting docker
+      service:
+        name: docker
+        state: started
+    - name: crreating dockervolume
+      command: docker volume create dockervolume
+    - name: downloading Abdennour index.html 
+      uri:
+        url: "https://raw.githubusercontent.com/abdennour/example-static-website/ansible-course/index.html"
+        dest: /var/lib/docker/volumes/dockervolume/_data
+    - name: pulling nginx image
+      command: "docker pull nginx"
+    - name: starting nginx container
+      command: "docker run -d -p 80:80 -v dockervolume:/usr/share/nginx/html nginx"
+
+
+
+      # uri:
+      #   url: https://github.com/abdennour/example-static-website/blob/ansible-course/index.html
+      #   dest: /usr/share/nginx/html/

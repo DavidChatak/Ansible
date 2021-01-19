@@ -1,0 +1,21 @@
+---
+- hosts: ec2
+  become: yes
+  tasks:
+    - name: installing  nginx
+      package:
+        name: nginx
+        state: latest
+      register: my_var
+    - name: print on screen
+      debug:
+        var: my_var
+      register: myvar2
+    - name: copy it to the file on ec2
+      copy:
+        content: " {{ my_var }} {{ myvar2 }}"
+        dest: /home/ansibleuser/my_var.txt
+    - name: print myvar2
+      debug:
+        var: myvar2
+

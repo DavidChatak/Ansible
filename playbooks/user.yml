@@ -1,5 +1,5 @@
 ---
-- hosts: ec2
+- hosts: dockerhost
   become: yes
   vars_files: ./vars/users.yml
   tasks:

@@ -1,0 +1,12 @@
+---
+- hosts: ec2-2
+  become: yes
+  tasks:
+    - name: updating
+      command: sudo yum update -y
+    - name: installing nginx from amazon-linux-extras
+      command: sudo amazon-linux-extras install nginx1
+    - name: starting nginx
+      service:
+        name: nginx
+        state: started

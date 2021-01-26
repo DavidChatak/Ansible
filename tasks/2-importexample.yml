@@ -1,0 +1,4 @@
+- uri:
+    url: "https://api.github.com/users/davidchatak/repos"
+    dest: /tmp/repos.txt
+  delegate_to: localhost

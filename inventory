@@ -1,2 +1,17 @@
-ec2 ansible_host=54.91.14.114  ansible_private_key_file=./ansibleuser ansible_ssh_user=ansibleuser
+ubuntu ansible_host=54.175.125.185  ansible_private_key_file=./ansibleuser ansible_ssh_user=ansibleuser
+ec2 ansible_host=3.87.197.117 ansible_private_key_file=./NVPEM.pem ansible_ssh_user=ec2-user
+
 dockerhost ansible_host=localhost ansible_private_key_file=./ansibleuser ansible_ssh_user=ansibleuser ansible_ssh_port=2525
+
+[aws]
+ubuntu
+ec2
+
+[ops]
+ubuntu
+
+[dev]
+ec2
+
+[docker]
+dockerhost

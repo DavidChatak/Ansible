@@ -1,0 +1,27 @@
+---
+- hosts: ops
+  become: yes
+  vars:
+    webserver: david_webserver
+    list: [1,2,3,4,5]
+    dict: {"apple":"elma", "name":"george"}
+  tasks:
+  - name: printing on screen 
+    debug:
+      msg: |
+        ansible_facts
+        {{ webserver }}
+        with filter {{ webserver | capitalize }}
+        sum:  {{ list | sum }}
+        sum:  {{ list | sum | type_debug }}
+        type:  {{ list | type_debug }}
+        dict: {{ dict | dict2items }}
+        dict: {{ dict | dict2items | items2dict }}
+        dict_to_nice_json : {{ dict | dict2items | to_nice_json  }}
+    register: res
+  - name: copy res to a file
+    copy:
+      content: "{{ res }}"
+      dest: /tmp/res
+    delegate_to: localhost
+

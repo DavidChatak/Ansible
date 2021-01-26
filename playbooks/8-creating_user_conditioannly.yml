@@ -1,0 +1,11 @@
+---
+- hosts: aws
+  become: yes
+  vars_files: /home/ec2-user/vars/2users.yml
+  tasks:
+    - name: creating users2
+      shell: |
+        useradd {{ item.name }}
+        usermod -s /bin/bash {{ item.name }}
+      loop: "{{ assignments_users }}"
+      when: (item.role == 'developer' and 'dev' in group_names) or (item.role == 'ops' and 'ops' in group_names)

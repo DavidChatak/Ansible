@@ -1,0 +1,32 @@
+---
+- hosts: aws
+  vars:
+    cats:
+      tabby:
+        color: grey
+        size: high
+      calico:
+        color: orange
+        size: medium
+    dogs:
+      doberman:
+        color: black
+        size: extremelyHigh
+      retviever:
+        color: golden
+        size: low
+  tasks:
+  - name: deploy dictionary looping template file
+    template:
+      src: ~/templates/0-template.j2
+      dest: ~/template.txt
+    tags:
+      - create
+  - name: remove template file
+    file:
+      dest: ~/template.txt
+      state: absent
+    tags:
+      - destroy
+
+  

@@ -1,0 +1,9 @@
+---
+- name: installing nginx
+  hosts: aws
+  become: yes 
+  tasks:
+    - name: installing docker
+      package:
+          name: docker.io
+          state: present

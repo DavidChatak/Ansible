@@ -1,0 +1,7 @@
+---
+- hosts: aws
+  tasks:
+    - name: creating ansible_facts
+      file:
+        dest: "{{ remote_file }}"
+        state: touch

@@ -1,0 +1,13 @@
+.ansible/
+.bash_history
+.bash_logout
+.bash_profile
+.bashrc
+.cache/
+.config/
+.gitconfig
+.local/
+.ssh/
+.streamlit/
+.txt
+.vscode-server/

@@ -1,9 +1,13 @@
-- hosts: ubuntu
-  become: true
-  vars:
-    # jenkins_hostname: jenkins.example.com
-    java_packages:
-      - openjdk-8-jdk
-  roles:
-    - role: geerlingguy.java
-    - role: geerlingguy.jenkins
+---
+- hosts: cluster
+  become: yes
+  tasks:
+  - name: installing docker
+    package:
+      name: docker
+      state: present
+  - name: starting docker
+    command: systemctl start docker
+  - name: installing kubernetes
+    import_role:
+      name: geerlingguy.kubernetes

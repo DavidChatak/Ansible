@@ -1,0 +1,13 @@
+---
+- hosts: cluster
+  become: yes
+  tasks:
+  - name: installing docker
+    package:
+      name: docker
+      state: present
+  - name: starting docker
+    command: systemctl start docker
+  - name: installing kubernetes
+    import_role:
+      name: geerlingguy.kubernetes

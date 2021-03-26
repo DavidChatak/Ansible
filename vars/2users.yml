@@ -1,0 +1,10 @@
+assignments_users:
+  - name: ahmed2
+    role: developer
+    comment: 'hıyar adam'
+  - name: mouath2
+    role: developer
+    comment: 'hıyar adam'
+  - name: ali2
+    comment: 'hıyar adam'
+    role: ops

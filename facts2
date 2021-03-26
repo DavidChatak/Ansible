@@ -1,0 +1,11 @@
+
+PLAY [aws] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+fatal: [instance-1]: FAILED! => {"msg": "Unable to execute ssh command line on a controller due to: [Errno 12] Cannot allocate memory"}
+fatal: [instance-2]: FAILED! => {"msg": "Unable to execute ssh command line on a controller due to: [Errno 12] Cannot allocate memory"}
+
+PLAY RECAP *********************************************************************
+instance-1                 : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+instance-2                 : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+

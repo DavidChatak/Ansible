@@ -1,0 +1,13 @@
+---
+- hosts: aws
+  become: yes
+  tasks:
+    - name: copy some ansible_facts to remote file
+      copy:
+        content: |
+          Distribution: {{ ansible_facts.distribution }}
+          Distribution_release: {{ ansible_facts.distribution_release }}
+          Distribution_version: {{ ansible_facts.distribution_version }}
+          num_CPU: {{ ansible_facts.processor_cores }} core
+          Total Memory: {{ ansible_facts.memtotal_mb }} free:{{ ansible_facts.memfree_mb }}
+        dest: /home/ansibleuser/facts2

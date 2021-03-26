@@ -1,0 +1,31 @@
+---
+- hosts: ubuntu
+  become: yes
+  tasks:
+    - name: installing nginx
+      package:
+        name: nginx
+        state: latest
+    - name: starting nginx
+      service: 
+        name: nginx
+        state: started
+    - name: deleting index.file
+      file:
+        dest: /usr/share/nginx/html/index.html
+        state: absent
+    - name: index.html file from github
+      uri:
+        url: https://raw.githubusercontent.com/DavidChatak/Ansible/{{ git_branch }}/{{ item }}.html
+        dest: /usr/share/nginx/html/
+      with_items: [login, index]
+      when: git_branch == 'david'
+    - name: starting nginx
+      service: 
+        name: nginx
+        state: started
+    # - name: copy index.html to server
+    #   copy:
+    #     src: /home/ec2-user/index.html
+    #     dest: /usr/share/nginx/html/
+

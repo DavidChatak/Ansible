@@ -1,0 +1,13 @@
+---
+- hosts: all
+  tasks:
+  - name: pinging
+    ping:
+    register: res
+  - name: printing the result
+    debug:
+      var: ansible_facts.user_id
+  - name: writing host name on remote /tmp/hostname
+    template:
+      src: ../templates/0-template.j2
+      dest: /tmp/hostname

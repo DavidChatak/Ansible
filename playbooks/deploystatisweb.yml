@@ -1,0 +1,21 @@
+---
+- hosts: ec2
+  become: yes
+  tasks:
+    - name: installing  nginx
+      package:
+        name: nginx
+        state: latest
+    - name: index.html file from github
+      uri:
+        url: https://github.com/abdennour/example-static-website/blob/ansible-course/index.html
+        dest: /usr/share/nginx/html/
+    - name: starting nginx
+      service: 
+        name: nginx
+        state: started
+    # - name: copy index.html to server
+    #   copy:
+    #     src: /home/ec2-user/index.html
+    #     dest: /usr/share/nginx/html/
+

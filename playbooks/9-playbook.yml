@@ -1,0 +1,12 @@
+---
+- hosts: aws
+  vars_files: ~/vars/2users.yml
+  become: yes
+  tasks:
+  - name: re-creating user from var files
+    user:
+      name: '{{ item.name }}'
+      comment: '{{ item.comment }}'
+      state: absent
+    loop: '{{ assignments_users }}'
+    when: (item.role == 'developer' and 'dev' in group_names) or (item.role == 'ops' and 'ops' in group_names)

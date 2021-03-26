@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  db-server:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: David_123
+      MYSQL_DATABASE: phonebook_db
+      MYSQL_USER: david
+      MYSQL_PASSWORD: David_123
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/mysql
+    networks:
+      - clarusnet
+  app-server:
+    build: . # "${ECR_REGISTRY}/${APP_REPO_NAME}:latest"
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - clarusnet
+
+networks:
+  clarusnet:
+    driver: bridge
+
+volumes:
+    db-data:

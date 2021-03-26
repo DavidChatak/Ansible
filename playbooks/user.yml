@@ -1,0 +1,10 @@
+---
+- hosts: dockerhost
+  become: yes
+  vars_files: ./vars/users.yml
+  tasks:
+    - name: deploying static web site nginx
+      shell: |
+        groupadd {{ assignment_group }}
+        useradd {{ assignment_user_name }} -u {{ assignment_user_id }} -g {{ assignment_group }}
+        usermod -s /bin/bash {{ assignment_user_name }}

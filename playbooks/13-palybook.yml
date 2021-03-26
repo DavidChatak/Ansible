@@ -1,0 +1,12 @@
+---
+- hosts: aws
+  vars_files: ~/vars/3vars.yml
+  become: yes
+  tasks:
+  - name: re-creating user and password from var files
+    user:
+      name: '{{ item.name }}'
+      password: "{{ item.password | password_hash('sha512') }}"
+      state: present
+    loop: '{{ assignment_users }}'
+    when: (item.role == 'developer' and 'dev' in group_names) or (item.role == 'ops' and 'ops' in group_names)

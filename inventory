@@ -1,0 +1,19 @@
+instance-1 ansible_host=18.212.1.134 ansible_private_key_file=./NVPEM.pem ansible_ssh_user=ec2-user
+instance-2 ansible_host=54.91.180.252 ansible_private_key_file=./NVPEM.pem ansible_ssh_user=ec2-user
+
+dockerhost ansible_host=localhost ansible_private_key_file=./ansibleuser ansible_ssh_user=ansibleuser ansible_ssh_port=2525
+
+[aws]
+instance-1
+instance-2
+
+[ops]
+ubuntu
+
+[dev]
+ec2
+
+[docker]
+dockerhost
+
+[inventory]
